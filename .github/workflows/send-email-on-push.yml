@@ -44,3 +44,5 @@ jobs:
           Equipo de Desarrollo
         to: destinatario1@example.com, destinatario2@example.com # Cambia por los destinatarios
         from: your_email@gmail.com # Cambia por tu correo
+
+        
