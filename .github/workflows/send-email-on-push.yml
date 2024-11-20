@@ -42,6 +42,6 @@ jobs:
           
           Saludos,
           Equipo de Desarrollo
-        to: lfernando.rramos@gmail.com # Cambia por los destinatarios
-        from: your_email@gmail.com # Cambia por tu correo
+        to: lfernando.rramos@gmail.com, lfernando.rr@outlook.com
+        from: lfernando.rramos@gmail.com
 
