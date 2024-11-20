@@ -29,10 +29,11 @@ jobs:
     - name: Send email notification
       uses: dawidd6/action-send-mail@v3
       with:
-        server_address: smtp.office365.com
+        server_address: smtp.gmail.com
         server_port: 587
-        username: lfernando.rr@outlook.com
+        username: lfernando.rramos@gmail.com
         password: ${{ secrets.EMAIL_PASSWORD }}
+
         subject: ${{ env.subject }}
         body: |
           Hola,
