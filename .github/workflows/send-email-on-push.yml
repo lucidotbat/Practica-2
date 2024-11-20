@@ -1,0 +1,45 @@
+name: Notify via Email on Push
+
+on:
+  push:
+    branches:
+      - main
+      - feature_a
+      - feature_b
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set branch-specific subject
+      id: set_subject
+      run: |
+        if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+          echo "subject=Cambios subidos a rama main" >> $GITHUB_ENV
+        elif [[ "${{ github.ref }}" == "refs/heads/feature_a" ]]; then
+          echo "subject=Cambios subidos a rama feature_a" >> $GITHUB_ENV
+        elif [[ "${{ github.ref }}" == "refs/heads/feature_b" ]]; then
+          echo "subject=Cambios subidos a rama feature_b" >> $GITHUB_ENV
+        fi
+
+    - name: Send email notification
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.office365.com
+        server_port: 587
+        username: lfernando.rr@outlook.com
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: ${{ env.subject }}
+        body: |
+          Hola,
+          
+          Se han subido cambios en la rama: ${{ github.ref_name }}.
+          
+          Saludos,
+          Equipo de Desarrollo
+        to: destinatario1@example.com, destinatario2@example.com # Cambia por los destinatarios
+        from: your_email@gmail.com # Cambia por tu correo
